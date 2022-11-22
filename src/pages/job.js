@@ -24,7 +24,6 @@ const Job = () => {
         console.log(error);
       });
   }, []);
-  console.log(job);
 
   return (
     <>

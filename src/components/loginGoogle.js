@@ -7,17 +7,12 @@ const LoginGoogle = () => {
   const client_id = process.env.REACT_APP_CLIENT_ID;
   const navigate = useNavigate();
   const onSuccess = (response) => {
-    console.log(
-      `[Login Success] Current User: ${JSON.stringify(
-        response.xc.access_token
-      )}`
-    );
     localStorage.setItem("jwt", response.xc.access_token);
     navigate("/jobs-find");
   };
 
-  const onFailure = (response) => {
-    console.log(`[Login Failed] Current User: ${JSON.stringify(response)}`);
+  const onFailure = () => {
+    console.log(`[Login Failed]`);
   };
 
   useEffect(() => {
