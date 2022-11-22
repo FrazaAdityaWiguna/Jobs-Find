@@ -16,7 +16,7 @@ const JobsFind = () => {
   const [loading, setLoading] = useState({
     btnLoading: false,
   });
-  const [stateBtn, setStateBtn] = useState({ moreBtn: true });
+  const [stateBtn, setStateBtn] = useState({ moreBtn: true, showJobs: false });
 
   useEffect(() => {
     // Make a request for a user with a given ID
@@ -51,7 +51,7 @@ const JobsFind = () => {
   };
 
   const handleFilter = async () => {
-    setLoading((prev) => ({ ...prev, btnLoading: true }));
+    setStateBtn((prev) => ({ ...prev, moreBtn: true, showJobs: true }));
     await axios
       .get(
         `http://dev3.dansmultipro.co.id/api/recruitment/positions.json?description=${filter.description}&location=${filter.location}&full_time=${filter.full_time}`
@@ -147,7 +147,13 @@ const JobsFind = () => {
 
         <div className="p-6 bg-white border border-gray-200 rounded-lg shadow-md w-full">
           <h3>
-            <strong>Job List</strong>
+            <strong>
+              {stateBtn.showJobs ? (
+                <>Showing {jobs.length} jobs</>
+              ) : (
+                <>Job List</>
+              )}
+            </strong>
           </h3>
 
           {jobs && (
