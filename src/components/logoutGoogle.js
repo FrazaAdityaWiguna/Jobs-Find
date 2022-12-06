@@ -1,12 +1,14 @@
 import React from "react";
 import { GoogleLogout } from "react-google-login";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const LogoutGoogle = () => {
   const navigate = useNavigate();
+  const googleId = useSelector((state) => state.googleId);
 
   const onSuccess = () => {
-    localStorage.removeItem("jwt");
+    localStorage.removeItem(`jwt-${googleId}`);
     navigate("/");
   };
   return (

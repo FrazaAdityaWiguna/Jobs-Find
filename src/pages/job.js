@@ -23,7 +23,7 @@ const Job = () => {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, [project_id]);
 
   return (
     <>
